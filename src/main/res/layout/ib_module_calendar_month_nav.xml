@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:tag="month_year_title"
+android:layout_weight="3.1"
+android:layout_gravity="top"
+android:gravity="top"
+android:orientation="horizontal"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/month_year"
+    android:tag="month_year"
+    android:textAlignment="center"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="1 - 2019"
+    android:textSize="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+</LinearLayout>

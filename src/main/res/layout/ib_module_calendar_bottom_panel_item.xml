@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Элемент события в списке - этот элемент копируется -->
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:visibility="visible"
+android:tag="bottom_panel_event_item_clone"
+android:paddingLeft="15dp"
+android:paddingRight="15dp"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+<TextView
+    style="@style/CalendarLayout.BottomPanel.GreyText"
+    android:text="6 марта 2019 г. 10:00"
+    android:tag="event_datetime"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <TextView
+        android:layout_weight="1"
+        android:gravity="left"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:tag="event_name"
+        android:text="ООО БИГ ФИШ ГРУПП БИГ ФИШ ГРУПП БИГ ФИШ ГРУПП"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        style="@style/CalendarLayout.BottomPanel.GreyText"
+        android:layout_weight="6"
+        android:text=">"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+<TextView
+    style="@style/CalendarLayout.BottomPanel"
+    android:tag="event_type"
+    android:text="Звонок"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+<LinearLayout
+    android:background="@drawable/weekdays_line"
+    android:layout_width="match_parent"
+    android:layout_height="12dp"></LinearLayout>
+<!-- Конец элемента события -->
+</LinearLayout>

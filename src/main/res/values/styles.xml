@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CalendarLayout">
+
+    </style>
+    <style name="CalendarLayout.BottomPanel">
+        <item name="android:textColor">#3A3A3A</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="CalendarLayout.ContactPhonesNums">
+        <item name="android:textColor">#3A3A3A</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="CalendarLayout.BottomPanel.BoldText">
+        <item name="android:textColor">#3A3A3A</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="CalendarLayout.BottomPanel.GreyText">
+        <item name="android:textColor">#838383</item>
+    </style>
+    <!--  будний день активный месяц -->
+    <style name="CalendarLayout.WeekNumMonth">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textAppearance">@style/CalendarText.WeekNumMonth</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <!--  выходной день активный месяц -->
+    <style name="CalendarLayout.WeekNumMonth.WeekNumMonthHoliday">
+        <item name="android:textColor">#838383</item>
+    </style>
+    <!-- не активный месяц будни -->
+    <style name="CalendarLayout.WeekNumMonth.NotActive">
+        <item name="android:textColor">#838383</item>
+    </style>
+    <!-- не активный месяц выходные -->
+    <style name="CalendarLayout.WeekNumMonth.NotActive.Holiday">
+    </style>
+    <!-- будни активный месяц - выбранный день -->
+    <style name="CalendarLayout.WeekNumMonth.Selected">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/background_selected</item>
+
+    </style>
+    <!-- текущий день месяца -->
+    <style name="CalendarLayout.WeekNumMonth.Current">
+        <item name="android:background">@drawable/background_current_day</item>
+    </style>
+    <!-- день с событием -->
+    <style name="CalendarLayout.WeekNumMonth.HasEvent">
+        <item name="android:textColor">#868686</item>
+        <item name="android:background">@drawable/background_has_event</item>
+    </style>
+    <!-- дни недели -->
+    <style name="CalendarLayout.WeekNumMonth.Days">
+        <item name="android:textAppearance">@style/CalendarText.WeekDay</item>
+    </style>
+
+
+    <!--- ТЕКСТОВЫЕ СТИЛИ -->
+    <!--- ТЕКСТОВЫЕ СТИЛИ -->
+    <!--- ТЕКСТОВЫЕ СТИЛИ -->
+
+    <style name="CalendarText" >
+        <item name="android:textSize">18dp</item>
+    </style>
+    <!-- Название дня недели -->
+    <style name="CalendarText.WeekDay" >
+        <item name="android:textSize">18dp</item>
+    </style>
+    <!-- Число дня недели не текущего месяца -->
+    <style name="CalendarText.WeekNumNotMonth">
+
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+    <!-- Число дня недели текущего месяца -->
+    <style name="CalendarText.WeekNumMonth">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <!-- Текст события под числом дня текущего месяца -->
+    <style name="CalendarText.WeekEventMonth">
+        <item name="android:layout_marginTop">5dp</item>
+
+        <item name="android:textColor">@android:color/black</item>
+
+    </style>
+    <!-- Число дня недели текущего месяца - выходной -->
+    <style name="CalendarText.WeekNumMonthHoliday">
+
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalendarFragment">
+
+    <!-- Календарь -->
+    <LinearLayout
+        android:id="@+id/my_calendar"
+        android:tag="my_calendar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- Навигация по месяцам -->
+        <include layout="@layout/ib_module_calendar_month_nav"/>
+        <!-- дни недели 0 строка -->
+        <include layout="@layout/ib_module_calendar_weekdays"/>
+        <!-- граница внизу -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/weekdays_line"
+            android:layout_weight="3.25"></LinearLayout>
+        <!-- ЧИСЛА МЕСЯЦА 1 строка -->
+        <include layout="@layout/ib_module_calendar_weekline"/>
+        <!-- ЧИСЛА МЕСЯЦА 2 строка -->
+        <include layout="@layout/ib_module_calendar_weekline"/>
+        <!-- Числа месяца 3 строка -->
+        <include layout="@layout/ib_module_calendar_weekline"/>
+        <!-- Числа месяца 4 строка -->
+        <include layout="@layout/ib_module_calendar_weekline"/>
+        <!-- Числа месяца 5 строка -->
+        <include layout="@layout/ib_module_calendar_weekline"/>
+        <!-- Числа месяца 6 строка -->
+        <include layout="@layout/ib_module_calendar_weekline"/>
+        <!-- Если есть событие на дне показываем расписание -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:tag="bottom_panel"
+            android:visibility="gone"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:background="@drawable/weekdays_line"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"></LinearLayout>
+            <ScrollView
+                android:tag="bottom_panel_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
