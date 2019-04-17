@@ -44,6 +44,7 @@ public class CalendarView extends ViewPager {
     final public static int VIEW_PARAM_ALWAYS_SHOW_BOTTOM_PANEL = 1; // всегда показывать нижнюю панель
 
     final public static String VIEW_TAG_DAY_NUM_EVENT = "day_num_has_event";
+    final public static String VIEW_TAG_DAY_NUM_TEXT = CalendarFragment.DAY_NUM;
 
     private  Integer startYear;
     private  Integer endYear;
@@ -54,6 +55,8 @@ public class CalendarView extends ViewPager {
 
     private  MONTH month;
     private  Integer year;
+    private  Integer date;
+
     private boolean hideMonthYearTitle;
     private boolean isAlwaysShowBottomPanel = false;
 
@@ -79,6 +82,10 @@ public class CalendarView extends ViewPager {
         this.year = year;
     }
 
+    public void setDate(int date) {
+        this.date = date;
+    }
+
     public void hideMonthYearTitle(){
         hideMonthYearTitle = true;
     }
@@ -94,6 +101,13 @@ public class CalendarView extends ViewPager {
         logDebug("onLayout end");
     }
 
+    public static int getCurrentDate(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d");
+        String format =  dateFormat.format(GregorianCalendar.getInstance().getTime());
+
+        return Integer.parseInt(format);
+    }
+
     public static int getCurrentYear(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("Y");
         String format =  dateFormat.format(GregorianCalendar.getInstance().getTime());
@@ -106,6 +120,10 @@ public class CalendarView extends ViewPager {
         String format =  dateFormat.format(GregorianCalendar.getInstance().getTime());
 
         return Integer.parseInt(format);
+    }
+
+    public Integer getDate() {
+        return date;
     }
 
     public void alwaysShowBottomPanel(){
@@ -129,18 +147,21 @@ public class CalendarView extends ViewPager {
         if(month == null) {
             month = MONTH.values()[getCurrentMonth()-1];
         }
+        if(date == null) {
+            date = CalendarView.getCurrentDate();
+        }
         logDebug("initialize start");
         startYear           = fromYear;
         endYear             = toYear;
         fragmentManager     = fm;
         monthsCount         = calculateMonthsCount();
-        adapter             = new CalendarAdapter(fragmentManager, monthsCount, startYear, year, month.getVal(), isFirstRun);
+        adapter             = new CalendarAdapter(fragmentManager, monthsCount, startYear, year, month.getVal(), date, isFirstRun);
         adapter.addViewParam(CalendarView.VIEW_PARAM_HIDE_MONTH_YEAR, hideMonthYearTitle);
         adapter.addViewParam(CalendarView.VIEW_PARAM_ALWAYS_SHOW_BOTTOM_PANEL, isAlwaysShowBottomPanel);
 
         setAdapter(adapter);
-        addOnPageChangeListener(new CalendarPageListener(fragmentManager));
         setCurrentItem(month.getVal());
+        addOnPageChangeListener(new CalendarPageListener(fragmentManager));
         logDebug("initialize end");
     }
 

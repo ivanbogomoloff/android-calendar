@@ -15,11 +15,13 @@ public class CalendarAdapter extends FragmentStatePagerAdapter {
     private int startYear;
     private int year;
     private int month;
+    private int date;
+
     private boolean isFirstRun = true;
 
     private ArrayList<Object> viewParams;
 
-    public CalendarAdapter(FragmentManager fm, int months, int startYear, int year, int month, boolean isFirstRun) {
+    public CalendarAdapter(FragmentManager fm, int months, int startYear, int year, int month, int date, boolean isFirstRun) {
         super(fm);
         countMonths         = months;
         this.year           = year;
@@ -27,6 +29,7 @@ public class CalendarAdapter extends FragmentStatePagerAdapter {
         this.month          = month;
         viewParams          = new ArrayList<>();
         this.isFirstRun     = isFirstRun;
+        this.date = date;
     }
 
     public CalendarAdapter addViewParam(int index, Object v) {
@@ -54,7 +57,7 @@ public class CalendarAdapter extends FragmentStatePagerAdapter {
         Log.d(getClass().toString(), "getItem = " + Integer.toString(monthPosition));
         Log.d(getClass().toString(), "calculatedMonth = " + Integer.toString(calculatedMonth));
 
-        return CalendarFragment.newInstance(i, calculatedMonth, calculatedYear, viewParams);
+        return CalendarFragment.newInstance(i, date, calculatedMonth, calculatedYear, viewParams);
     }
 
     @Override

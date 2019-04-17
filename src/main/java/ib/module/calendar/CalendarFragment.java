@@ -22,6 +22,7 @@ import java.util.GregorianCalendar;
  * TODO
  */
 public class CalendarFragment extends Fragment {
+    private static final String ARG_DATE = "date";
     private static final String ARG_MONTH = "month";
     private static final String ARG_YEAR = "year";
     private static final String ARG_HIDE_MONTH_YEAR_TITLE = "hide_month_year"; //скрывать строку месяц-год
@@ -33,6 +34,7 @@ public class CalendarFragment extends Fragment {
     public static final String DAY_NUM_CURRENT = "day_num_current";
     public static final String DAY_HAS_EVENT_INDICATOR = "day_num_has_event";
     public static final String TAG_BOTTOM_PANEL = "bottom_panel";
+    private int mDate;
     private int mCurrentMonth;
     private int mCurrentYear;
     private int mRealPos;
@@ -48,11 +50,20 @@ public class CalendarFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-    public static CalendarFragment newInstance(int realPosition, int monthValue, int year, ArrayList<Object> viewParams) {
+    /**
+     *
+     * @param realPosition
+     * @param dateValue
+     * @param monthValue
+     * @param year
+     * @param viewParams
+     * @return
+     */
+    public static CalendarFragment newInstance(int realPosition, int dateValue, int monthValue, int year, ArrayList<Object> viewParams) {
 
         CalendarFragment fragment = new CalendarFragment();
         Bundle args = new Bundle();
+        args.putInt(ARG_DATE, dateValue);
         args.putInt(ARG_MONTH, monthValue);
         args.putInt(ARG_YEAR, year);
         args.putBoolean(ARG_HIDE_MONTH_YEAR_TITLE, (Boolean) viewParams.get(CalendarView.VIEW_PARAM_HIDE_MONTH_YEAR));
@@ -66,6 +77,7 @@ public class CalendarFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            mDate       = getArguments().getInt(ARG_DATE);
             mCurrentMonth       = getArguments().getInt(ARG_MONTH);
             mCurrentYear        = getArguments().getInt(ARG_YEAR);
             mRealPos        = getArguments().getInt(ARG_REAL_POSITION);
@@ -199,16 +211,22 @@ public class CalendarFragment extends Fragment {
                                     && mCurrentMonth == calendarCurrentMonth) {
                                 dayContainer.removeView(dayText);
                                 dayTextCurrent.setTag(DAY_NUM);
-                                CalendarFragment.highLightDay(dayTextCurrent, dayTextSelected);
-
-                                dayClickListener.setPrevSelectedDayText(dayTextCurrent);
-                                dayClickListener.setPrevSelectedDayTextSelected(dayTextSelected);
+                                dayTextCurrent.setVisibility(View.VISIBLE);
                             }
                             else {
                                 dayContainer.removeView(dayTextCurrent);
                             }
 
-                            if(isVisibleDay) {
+                            if(isVisibleDay)
+                            {
+                                if(startDayCounter-1 == mDate
+                                        && calendarCurrentYear == mCurrentYear
+                                        && mCurrentMonth == calendarCurrentMonth
+                                )
+                                {
+                                    highLightDayWithCurrent(dayContainer, dayClickListener);
+                                }
+
                                 dayContainer.setOnClickListener(dayClickListener);
                             }
                             weekDayIndex++;
@@ -301,9 +319,7 @@ public class CalendarFragment extends Fragment {
     }
 
     public void onPageSelected(){
-        if(getUserVisibleHint()){
-            mListener.onCalendarMonthChange(views, mCurrentMonth, mCurrentYear);
-        }
+        mListener.onCalendarMonthChange(views, mCurrentMonth, mCurrentYear);
     }
 
     /**
@@ -326,6 +342,23 @@ public class CalendarFragment extends Fragment {
             dayViewSelected.setVisibility(View.VISIBLE);
             dayView.setVisibility(View.GONE);
         }
+    }
+
+    public static void highLightDayWithCurrent(RelativeLayout dayContainer, CalendarDayClickListener clickListener) {
+        TextView dayTextView = dayContainer.findViewWithTag(DAY_NUM);
+        TextView dayTextSelectedView = dayContainer.findViewWithTag(DAY_NUM_SELECTED);
+
+        highLightDay(dayTextView, dayTextSelectedView);
+        clickListener.setPrevSelectedDayText(dayTextView);
+        clickListener.setPrevSelectedDayTextSelected(dayTextSelectedView);
+    }
+
+    public static void highLightDayWithCurrent(RelativeLayout dayContainer) {
+        TextView dayTextView = dayContainer.findViewWithTag(DAY_NUM);
+        TextView dayTextSelectedView = dayContainer.findViewWithTag(DAY_NUM_SELECTED);
+
+        highLightDay(dayTextView, dayTextSelectedView);
+        dayContainer.performClick();
     }
 
     protected void logDebug(String msg) {
