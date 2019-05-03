@@ -12,7 +12,7 @@ dependencies {
 }
 ```
 
-# How to install / Как установить
+## How to install / Как установить
 
 1. Clone module into your root project dir
 2. Add implementation to build.gradle

@@ -155,6 +155,12 @@ public class CalendarFragment extends Fragment {
                  * Попали в строку недели
                  */
                 if(viewTag.equals("week_line")) {
+                    //скрываем пустую неделю в конце виева
+                    if (startDayCounter <= limitDayMonth) {
+                        calendarBaseLayout.getChildAt(i).setVisibility(View.VISIBLE);
+                    }else {
+                        calendarBaseLayout.getChildAt(i).setVisibility(View.GONE);
+                    }
                     LinearLayout weekLine = (LinearLayout) calendarBaseLayout.getChildAt(i);
                     int weekDayIndex = 0;
                     //logDebug("weekDayIndex is " + Integer.toString(weekDayIndex));
