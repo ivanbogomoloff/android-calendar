@@ -240,7 +240,24 @@ public class CalendarFragment extends Fragment {
                     }
                     isFirstWeek = false;
                 }
+                else if(viewTag.equals("weekdays"))
+                {
+                    LinearLayout weekDaysLine = (LinearLayout) calendarBaseLayout.getChildAt(i);
+                    int weekDayIndex = 2;
+                    Calendar calendarWeekDay = Calendar.getInstance();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE");
+                    for(int n = 0; n < weekDaysLine.getChildCount(); n++) {
 
+                        if(weekDaysLine.getChildAt(n).getTag() != null)
+                        {
+                            TextView weekDayLabel = (TextView) weekDaysLine.getChildAt(n).findViewWithTag("weekday_text");
+                            calendarWeekDay.set(Calendar.DAY_OF_WEEK, weekDayIndex);
+                            weekDayLabel.setText(dateFormat.format(calendarWeekDay.getTime()).toLowerCase());
+
+                            weekDayIndex++;
+                        }
+                    }
+                }
             }
         }
 

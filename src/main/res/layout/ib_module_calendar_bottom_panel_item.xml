@@ -25,7 +25,7 @@ android:layout_height="wrap_content">
         android:textColor="#000"
         android:textSize="20dp"
         android:tag="event_name"
-        android:text="ООО БИГ ФИШ ГРУПП БИГ ФИШ ГРУПП БИГ ФИШ ГРУПП"
+        android:text="Some event name 123"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <TextView
@@ -40,7 +40,7 @@ android:layout_height="wrap_content">
 <TextView
     style="@style/CalendarLayout.BottomPanel"
     android:tag="event_type"
-    android:text="Звонок"
+    android:text="Foobar"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 <LinearLayout
